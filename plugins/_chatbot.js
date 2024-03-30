@@ -50,8 +50,8 @@ export async function before(m, { conn }) {
       
       let reply = content.parts[0].text; 
       if (reply) {
-        reply = reply.replace(/Google/gi, 'Guru');
-        reply = reply.replace(/a large language model/gi, botname);
+        reply = reply.replace(/Google/gi, 'OSGeine');
+        reply = reply.replace(/a large language model/gi, 'OSGeine');
     
     m.reply(reply);
         }
