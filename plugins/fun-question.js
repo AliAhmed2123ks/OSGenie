@@ -16,6 +16,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
     
 ▢ *Question:* ${text}
 ▢ *Answer:* ${answer}`);
+
   } else {
     throw 'No valid response received from the API.';
   }

@@ -15,7 +15,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const json = await res.json();
   
   
-    let reply = json.result.response;
+    let reply = json.result.response.replace(/Rekha/g, "OSGenie");;
     m.reply(reply);
 
 };

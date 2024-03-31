@@ -72,6 +72,51 @@ let handler = async (m, { conn, text }) => {
 
   //     .renderEmojis(true)
   Font.loadDefault();
+
+  let rankColor = "#1B9CFC";
+
+  // switch (roleId) {
+  //   case 0:
+  //     rankColor = "#F8EFBA"
+  //     break;
+  //   case 1:
+  //     rankColor = "#58B19F"
+  //     break;
+  //   case 2:
+  //     rankColor = "#82589F"
+  //     break;
+  //   case 3:
+  //     rankColor = "#6D214F"
+  //     break;
+  //   case 4:
+  //     rankColor = "#F97F51"
+  //     break;
+  //   case 5:
+  //     rankColor = "#1B9CFC"
+  //     break;
+  //   case 6:
+  //     rankColor = "#D6A2E8"
+  //     break;
+  //   case 7:
+  //     rankColor = "#1B9CFC"
+  //     break;
+  //   case 8:
+  //     rankColor = "#FD7272"
+  //     break;
+  //   case 9:
+  //     rankColor = ""
+  //     break;
+  //   case 10:
+  //     rankColor = ""
+  //     break;
+  //   case 11:
+  //     rankColor = ""
+  //     break;
+  //   case 12:
+  //     rankColor = ""
+  //     break;
+  // }
+
   const card = new RankCardBuilder()
     .setUsername("#" + who.substring(3, 7))
     .setDisplayName("Dr." + username)
@@ -91,7 +136,7 @@ let handler = async (m, { conn, text }) => {
           style: {
             background: "linear-gradient(60deg, rgba(15,185,177,1) 0%, rgba(32,191,107,1) 100%)",
           },
-        }, 
+        },
         track: {
           style: {
             backgroundColor: "#3d3d3d",
@@ -119,7 +164,7 @@ let handler = async (m, { conn, text }) => {
   });
 
   const str = `🏮 *Username:* ${username}\n\n⭐ *Experience:* ${crxp} / ${requiredXpToLevelUp}\n\n🏅 *Role:* *${role}*`
-  if(text == "private"){
+  if (text == "private") {
     try {
       conn.sendFile(who, image, 'rank.jpg', str, m, false, { mentions: [who] });
       m.react('✅');
@@ -127,13 +172,13 @@ let handler = async (m, { conn, text }) => {
       console.error(error);
     }
   } else {
-  try {
-    conn.sendFile(m.chat, image, 'rank.jpg', str, m, false, { mentions: [who] });
-    m.react('✅');
-  } catch (error) {
-    console.error(error);
+    try {
+      conn.sendFile(m.chat, image, 'rank.jpg', str, m, false, { mentions: [who] });
+      m.react('✅');
+    } catch (error) {
+      console.error(error);
+    }
   }
-}
   // m.reply("This feature is under maintenance")
 }
 
