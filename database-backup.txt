@@ -19,7 +19,7 @@
       "autolevelup": true
     },
     "966530740094@s.whatsapp.net": {
-      "exp": 302101,
+      "exp": 302535,
       "credit": 0,
       "bank": 0,
       "chicken": 0,
@@ -1275,10 +1275,10 @@
       "lastSuccess": 0
     },
     "maker-quote.js": {
-      "total": 2,
-      "success": 2,
-      "last": 1711483913606,
-      "lastSuccess": 1711483913606
+      "total": 6,
+      "success": 6,
+      "last": 1713264528255,
+      "lastSuccess": 1713264528255
     },
     "dl-gdrive.js": {
       "total": 5,
@@ -1389,10 +1389,10 @@
       "lastSuccess": 1711666286260
     },
     "gp-hidetag.js": {
-      "total": 5,
-      "success": 5,
-      "last": 1711561224987,
-      "lastSuccess": 1711561224987
+      "total": 6,
+      "success": 6,
+      "last": 1713264603626,
+      "lastSuccess": 1713264603626
     },
     "game-ppt.js": {
       "total": 64,
