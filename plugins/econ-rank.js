@@ -1,5 +1,6 @@
 import { xpRange } from '../lib/levelling.js';
 import { Font, RankCardBuilder } from "canvacord";
+import moment from "moment-timezone"
 
 let handler = async (m, { conn, text }) => {
   let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
@@ -117,43 +118,153 @@ let handler = async (m, { conn, text }) => {
   //     break;
   // }
 
+  
+  function ucapan() {
+    const time = moment.tz("Africa/Cairo").format("HH")
+    let res = "Good morning ☀️"
+    if (time >= 4) {
+     res = "Good Morning"
+    }
+    if (time >= 18) {
+     res = "Good Night"
+    }
+    return res
+   }
+   let rankBg = './Assets/rankbg.png'
+   if (ucapan() == "Good Morning"){
+     rankBg = './Assets/rankbg-m.png'
+    } else if (ucapan() == "Good Night") {
+     rankBg = './Assets/rankbg.png'
+   }
+
+
   const card = new RankCardBuilder()
-    .setUsername("#" + who.substring(3, 7))
+    .setUsername(role)
     .setDisplayName("Dr." + username)
     .setAvatar(pp)
     .setCurrentXP(crxp)
     .setRequiredXP(requiredXpToLevelUp)
     .setRank(roleId, 'Rank')
     .setLevel(level, 'Level')
-    .setBackground("#3d3d3d")
+    .setBackground("./Assets/rankbg.png")
     .setOverlay('#4b4b4b')
+    // .setStatus("online")
     .setTextStyles({
       rank: "ROLE:"
     })
     .setStyles({
+      overlay:{
+        style:{
+          background: "rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 15px 25px rgba(129, 124, 124, 0.2)",
+          backdropFilter: "blur(50px)"
+        }
+      },
+      background:{
+        style:{
+          // background: "radial-gradient(circle, rgba(34,41,45,1) 0%, rgba(13,25,37,1) 100%)",
+          // backgroundSize: "contain contain",
+          // backgroundRepeat: "no-repeat",
+          // backgroundPosition: "right",
+          width: "100%",
+          height: "100%"
+        }
+      },
+      avatar: {
+        image: {
+          style: {
+            display: "block",
+            margin: "0 auto",
+          }
+        },
+      },
+      // avatar: {
+      //   container: {
+      //     style: {
+      //       width: "200px",
+      //       height: "200px",
+      //       display: "flex",
+      //       justifyContent: "center",
+      //       alignItems:"center",
+      //       alignContent:"center"
+      //     }
+      //   },
+      //   image: {
+      //     style: {
+      //       display: "block",
+      //       margin: "0 auto",
+      //       width: "150px",
+      //       height:"150px"
+      //     }
+      //   },
+      //   // status: {
+      //   //   style: {
+      //   //     top: "50%",
+      //   //     left: "50%",
+      //   //     transform: "translate(-50%, -49%)",
+      //   //     width: "220px",
+      //   //     height: "220px",
+      //   //     // opacity: "0.4",
+      //   //     backgroundColor: "none",
+      //   //     backgroundImage: "url('https://i.ibb.co/Fqxgp8y/Group-4x.png')",
+           
+      //   //     backgroundSize: "100% 100%"
+      //   //   }
+      //   // }
+      // },
       progressbar: {
         thumb: {
           style: {
-            background: "linear-gradient(60deg, rgba(15,185,177,1) 0%, rgba(32,191,107,1) 100%)",
+            background: "#fffffff0",
+            // maxWidth: "93%",
+            height: "35px",
+            borderRaduis: "10px",
+            boxShadow: "0px 0px 108px 14px rgba(255 ,255, 255, 0.4)"
           },
         },
         track: {
           style: {
             backgroundColor: "#3d3d3d",
+            // maxWidth: "93%",
+            opacity: "0.5",
+            height: "35px",
+            borderRaduis: "10px",
+            boxShadow: "0px 0px 117px 5px rgba(255,255,255,0.29)"
           }
         },
       },
       statistics: {
-        container: {
-          style: {
-            fontSize: "20px"
-          }
+        level: {
+          text:{
+          style:{
+            color: "#f7f7f7",
+            fontWeight: "900"
+          }}
+        },
+        rank: {
+          text:{
+          style:{
+            color: "#f7f7f7",
+            fontWeight: "900"
+          }}
+        },
+        xp: {
+          text:{
+          style:{
+            color: "#f7f7f7",
+            fontWeight: "900"
+          }}
         }
       },
       username: {
-        container: {
+        name: {
           style: {
-            fontSize: "20px"
+            fontSize: "30px",
+          }
+        },
+        handle: {
+          style:{
+            color: "#fff",
           }
         }
       }
@@ -166,8 +277,14 @@ let handler = async (m, { conn, text }) => {
   const str = `🏮 *Username:* ${username}\n\n⭐ *Experience:* ${crxp} / ${requiredXpToLevelUp}\n\n🏅 *Role:* *${role}*`
   if (text == "private") {
     try {
+
+      // conn.sendFile(m.chat, image, 'rank.jpg', str, m, false, { mentions: [who] });
+      // m.react('✅');
       conn.sendFile(who, image, 'rank.jpg', str, m, false, { mentions: [who] });
       m.react('✅');
+
+      // m.reply('This feature is under maintenance now');
+      // m.react('🔨');
     } catch (error) {
       console.error(error);
     }
@@ -175,6 +292,8 @@ let handler = async (m, { conn, text }) => {
     try {
       conn.sendFile(m.chat, image, 'rank.jpg', str, m, false, { mentions: [who] });
       m.react('✅');
+      // m.reply('This feature is under maintenance now');
+      // m.react('🔨');
     } catch (error) {
       console.error(error);
     }
